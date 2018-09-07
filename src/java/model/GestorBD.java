@@ -14,6 +14,7 @@ import java.sql.Statement;
  * @author cristian.campos
  */
 public class GestorBD {
+    
     public boolean registrar(int clave, String nombre, Double precio, int cant){
         Connection conn = null;
         Statement stm;
@@ -23,7 +24,7 @@ public class GestorBD {
         try{
             conn = ConexionBD.abrir();
             stm = conn.createStatement();
-            resultUpdate = stm.executeUpdate("INSERT INTO Productos VALUES("+clave+",'"+ nombre + "'," + precio+"," +cant+ ");");
+            resultUpdate = stm.executeUpdate("INSERT INTO Producto VALUES("+clave+",'"+ nombre + "'," + precio+"," +cant+ ");");
             if( resultUpdate !=0){
                 ConexionBD.cerrar();
                 return true;

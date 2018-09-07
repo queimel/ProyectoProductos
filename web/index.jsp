@@ -21,6 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </head>
 <body>
+    <%@ page import="controller.registraProducto" %>
     <div class="container">
         <div class="row">
             <div class="col s7">
@@ -28,7 +29,7 @@
                 <h5>Ingresa los datos del producto</h5>
                 <br/>
                 <div class="card">
-                    <form action="">
+                    <form action="registraProducto" method="post">
                         <div class="card-content">
                             <div class="input-field">
                                 <input type="text" name="clave" id="clave" class="">
@@ -53,7 +54,7 @@
                                     <a class="waves-effect waves-teal btn-flat orange-text darken-4">Ver productos <i class="material-icons right">remove_red_eye</i></a> 
                                 </div>
                                 <div class="right">
-                                    <button class="btn waves-effect waves-light lighten-2" type="submit" name="borrar">Borrar <i class="material-icons right">delete</i></button>
+                                    <button class="btn waves-effect waves-light lighten-2" type="reset" name="borrar">Borrar <i class="material-icons right">delete</i></button>
                                     <button class="btn waves-effect waves-light  darken-3" type="submit" name="registrar">Registrar <i class="material-icons right">add</i></button>
                                     <button class="btn waves-effect waves-light   darken-1" type="submit" name="Buscar">Buscar <i class="material-icons right">search</i></button>
                                 </div>

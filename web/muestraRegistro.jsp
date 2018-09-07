@@ -21,6 +21,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </head>
 <body>
+    <%@ page import="model.Producto" %>
+    
+    <%
+     Producto producto = (Producto) request.getAttribute("producto");
+    %>
     <div class="container">
         <div class="row">
             <div class="col s6">
@@ -32,19 +37,19 @@
                         <table>
                             <tr>
                                 <td>Clave:</td>
-                                <td><%= clave %></td>
+                                <td><%= producto.getClave() %></td>
                             </tr>
                             <tr>
                                 <td>Nombre:</td>
-                                <td><%= nombre %></td>
+                                <td><%= producto.getNombre() %></td>
                             </tr>
                             <tr>
                                 <td>Precio:</td>
-                                <td><%= precio %></td>
+                                <td><%= producto.getPrecio() %></td>
                             </tr>
                             <tr>
                                 <td>Cantidad</td>
-                                <td><%= cantidad %></td>
+                                <td><%= producto.getCantidad() %></td>
                             </tr>
                         </table>
                     </div>
