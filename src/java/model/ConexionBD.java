@@ -14,7 +14,7 @@ public class ConexionBD {
     public static Connection conn;
     private static String bd = "productos";
     public static String usuario = "root";
-    public static String passw = "root";
+    public static String passw = "";
     public static String url = "jdbc:mysql://localhost:3306/"+bd;
     
     public static Connection abrir() {
