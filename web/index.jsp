@@ -22,14 +22,15 @@
 </head>
 <body>
     <%@ page import="controller.registraProducto" %>
+    <%@ page import="controller.muestraProductos" %>
     <div class="container">
         <div class="row">
-            <div class="col s7">
+            <div class="col s8">
                 <h1 class="red-text">Hola!</h1>
                 <h5>Ingresa los datos del producto</h5>
                 <br/>
                 <div class="card">
-                    <form action="registraProducto" method="post">
+                    <form method="post" name="formRegistrar">
                         <div class="card-content">
                             <div class="input-field">
                                 <input type="text" name="clave" id="clave" class="">
@@ -51,11 +52,11 @@
                         <div class="card-action">
                             <div class="row">
                                 <div class="left">
-                                    <a class="waves-effect waves-teal btn-flat orange-text darken-4">Ver productos <i class="material-icons right">remove_red_eye</i></a> 
+                                    <button class="waves-effect waves-teal btn-flat orange-text darken-4" type="submit" onclick="document.formRegistrar.action='muestraProductos'">Ver productos <i class="material-icons right">remove_red_eye</i></button> 
                                 </div>
                                 <div class="right">
                                     <button class="btn waves-effect waves-light lighten-2" type="reset" name="borrar">Borrar <i class="material-icons right">delete</i></button>
-                                    <button class="btn waves-effect waves-light  darken-3" type="submit" name="registrar">Registrar <i class="material-icons right">add</i></button>
+                                    <button class="btn waves-effect waves-light  darken-3" type="submit" name="registrar" onclick="document.formRegistrar.action='registraProducto'">Registrar <i class="material-icons right">add</i></button>
                                     <button class="btn waves-effect waves-light   darken-1" type="submit" name="Buscar">Buscar <i class="material-icons right">search</i></button>
                                 </div>
                             </div>
