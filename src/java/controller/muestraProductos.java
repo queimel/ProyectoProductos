@@ -7,20 +7,21 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.*;
+import model.LeeProductos;
+import model.Producto;
 
 /**
  *
  * @author Cristian Campos, David Orellana
  */
-@WebServlet(name = "registraProducto", urlPatterns = {"/registraProducto"})
-public class registraProducto extends HttpServlet {
+@WebServlet(name = "muestraProductos", urlPatterns = {"/muestraProductos"})
+public class muestraProductos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,34 +35,19 @@ public class registraProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         try (PrintWriter out = response.getWriter()) {
+            ArrayList <Producto> listaProductos = new ArrayList<Producto>();
+            LeeProductos cargaProductos = new LeeProductos();
             
-            // tomo parametros desde index
-            int clave =  Integer.parseInt(request.getParameter("clave"));
-            String nombre = request.getParameter("nombre");
-            double precio = Double.parseDouble(request.getParameter("precio"));
-            int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-            // instancio nuevo objeto producto
-            Producto nuevoProducto = new Producto(clave, nombre, precio, cantidad);
-            // instancio objeto guardarProducto
-            GuardaProducto guardarProducto = new GuardaProducto();
-
-            // si registra en BD
-            if (guardarProducto.registrar(clave, nombre, precio, cantidad)) {
-                // seteo atributos
-                request.setAttribute("producto",nuevoProducto);
-                // envio atributos a nuestraRegistro.jsp
-                request.getRequestDispatcher("/muestraRegistro.jsp")
-                        .forward(request, response);
-            } else {
-                request.getRequestDispatcher("/errorEnRegistro.jsp")
-                        .forward(request, response);
+            listaProductos = cargaProductos.consultar();
+            
+            if(listaProductos != null){
+                request.setAttribute("Productos", listaProductos);
+                request.getRequestDispatcher("/despliegaProductos.jsp").forward(request, response);
+            }else{
+                request.getRequestDispatcher("/sinRegistros.jsp").forward(request, response);
             }
-        } finally {
-            out.close();
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

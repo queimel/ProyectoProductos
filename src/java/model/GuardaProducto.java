@@ -13,12 +13,11 @@ import java.sql.Statement;
  *
  * @author cristian.campos
  */
-public class GestorBD {
+public class GuardaProducto {
     
     public boolean registrar(int clave, String nombre, Double precio, int cant){
         Connection conn = null;
         Statement stm;
-        ResultSet rs;
         int resultUpdate = 0;
         
         try{

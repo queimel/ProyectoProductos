@@ -3,7 +3,6 @@
     Created on : 07-09-2018, 8:37:50
     Author     : Cristian Campos, David Orellana
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +20,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </head>
 <body>
+    <%@page import="java.util.ArrayList"%>
+    <%@page import="model.Producto"%>
+    <%
+        ArrayList<Producto> productos = null;
+        productos= (ArrayList<Producto>)request.getAttribute("Productos");
+    %>
     <div class="container">
         <div class="row">
-            <div class="col s6">
+            <div class="col s8">
                 <h1 class="red-text">Lista de Productos</h1>
                 <h5>Los productos que están registrados son:</h5>
                 <br/>
@@ -36,28 +41,29 @@
                                 <th>Precio</th>
                                 <th>Cantidad</th>
                             </tr>
+                            <%
+                                for (Producto producto : productos) {
+                            %>
                             <tr>
-                                <td>12345</td>
-                                <td>leche</td>
-                                <td>15.25</td>
-                                <td>31</td>
+                                <td><%=producto.getClave()%></td>
+                                <td><%=producto.getNombre()%></td>
+                                <td><%=producto.getPrecio()%></td>
+                                <td><%=producto.getCantidad()%></td>
                             </tr>
-                            <tr>
-                                <td>23456</td>
-                                <td>pan</td>
-                                <td>17.5</td>
-                                <td>18</td>
-                            </tr>
+                            <% }%>
                         </table>
                         <br/>
-                        <div class="row">
-                            <p class="col s5 ">Número de registros: <span class="new badge teal lighten-2" data-badge-caption="">2</span></p>
-                        </div>
+
                     </div>
                     <div class="card-action">
                         <div class="row">
+                            <div class="left">
+                                <p>Número de registros: <span class="new badge teal lighten-2" data-badge-caption=""><%= productos.size() %></span></p>
+                            </div>
                             <div class="right">
-                                <button class="btn waves-effect waves-light  red darken-1" url="index.jsp"><i class="material-icons left">arrow_back</i> Volver</button>
+                                <form action="index.jsp" method="post">
+                                    <button class="btn waves-effect waves-light  red darken-1" url="index.jsp"><i class="material-icons left">arrow_back</i> Volver</button>
+                                </form>
                             </div>
                         </div>
                     </div>              
